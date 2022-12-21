@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+body {
+background-color: Ivory;
+
+  margin: auto;
+  width: 50%;
+  border: 3px solid red;
+  padding: 10px;
+text-align: center;
+
+}
+h1   {color: black;}
+p    {color: black;}
+</style>
+
+<head>
+  <title>Poker Blinds Timer</title>
+</head>
+<body>
+<h1>Poker Blinds Timer</h1>
+  <h1>Elapsed time: <span id="elapsed"></span></h1>
+  <h1>Current blinds: <span id="blinds"></span></h1>
+  <p>Configuration</p>
+  <p>
+    Small blind:
+    <input type="number" id="small-blind" value="1">
+    Big blind:
+    <input type="number" id="big-blind" value="2">
+  </p>
+  <p>
+    Time:
+    <input type="number" id="time" value="15"> minutes
+  </p>
+  <button onclick="startTimer()">Start Timer</button>
+  <button onclick="pauseTimer()">Pause Timer</button>
+  <button onclick="resetTimer()">Reset Timer</button>
+  <script>
+    // Set the elapsed time to 0
+    var elapsed = 0;
+    
+    // Create a variable to store the interval ID
+    var intervalId;
+	var smallBlind
+   	var bigBlind
+	var time
+	var count
+   
+    function startTimer() {
+      // Get the blinds and time from the input fields
+      smallBlind = document.getElementById("small-blind").value;
+      bigBlind = document.getElementById("big-blind").value;
+      time = document.getElementById("time").value;
+      
+      // Set the countdown timer to the specified time in minutes
+      count = time * 60;
+      
+      // Update the timer every second
+      intervalId = setInterval(function() {
+        // Calculate the minutes and seconds remaining
+        var minutes = Math.floor(count / 60);
+        var seconds = count % 60;
+        
+        // Update the timer display
+        document.getElementById("elapsed").innerHTML = minutes + ":" + seconds;
+        
+        // Increment the elapsed time by 1 second
+        elapsed++;
+        
+        // Calculate the elapsed minutes and seconds
+        var elapsedMinutes = Math.floor(elapsed / 60);
+        var elapsedSeconds = elapsed % 60;
+        
+        // Update the elapsed time display
+        document.getElementById("elapsed").innerHTML = elapsedMinutes + ":" + elapsedSeconds;
+        
+        // Decrement the count by 1
+        count--;
+        
+        // If the count reaches 0, double the blinds and reset the timer
+        if (count < 0) {
+          smallBlind *= 2;
+          bigBlind *= 2;
+          count = time * 60;
+		  
+		// Display alert message
+		alert("time 's up - Blind Raise!");
+		console.log("new blinds: " + smallBlind + "$/" + bigBlind + "$");
+		
+		  
+        }
+        
+
+        // Update the blinds display
+        document.getElementById("blinds").innerHTML = smallBlind + "$/" + bigBlind + "$";
+      }, 1000);
+    }
+    
+    function pauseTimer() {
+      // Pause the timer by clearing the interval
+      clearInterval(intervalId);
+    }
+    
+    function resetTimer() {
+      // Reset the timer, elapsed time, and blinds
+      elapsed = 0;
+      document.getElementById("small-blind").value = "1";
+      document.getElementById("big-blind").value = "";
+	  }
+	  
+    
+  </script>
+</body>
+</html>
