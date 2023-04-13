@@ -35,7 +35,6 @@ p    {color: black;}
   <h1>Current blinds: <span id="blinds"></span></h1>
   <p>Configuration</p>
   <p>
-    Small blind: <span id="small-blind"></span>
     Big blind:
     <input type="number" id="big-blind" value="2">
   </p>
@@ -60,10 +59,13 @@ p    {color: black;}
     function startTimer() {
       // Get the blinds and time from the input fields
       bigBlind = document.getElementById("big-blind").value;
-      smallBlind = bigBlind/2 //document.getElementById("small-blind").value;
-      document.getElementById("small-blind").innerHTML = smallBlind;
+      smallBlind = bigBlind/2;
+      //document.getElementById("small-blind").innerHTML = smallBlind;
       time = document.getElementById("time").value;
       
+      document.getElementById("big-blind").disabled = true;
+      document.getElementById("time").disabled = true;
+
       // Get starting Time
       const d = new Date();
       let timeStart = d.toLocaleString();
@@ -121,8 +123,11 @@ p    {color: black;}
     function resetTimer() {
       // Reset the timer, elapsed time, and blinds
       elapsed = 0;
-      document.getElementById("small-blind").value = "1";
+      document.getElementById("time").disabled = false;      
+      document.getElementById("big-blind").disabled = false;
       document.getElementById("big-blind").value = "";
+
+
 	  }
 	  
     
