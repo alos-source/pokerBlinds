@@ -63,6 +63,14 @@ p    {color: black;}
       //document.getElementById("small-blind").innerHTML = smallBlind;
       time = document.getElementById("time").value;
       
+    if (bigBlind == "" ||time == ""){
+
+      		// Display alert message
+		alert("input must not be empty!");
+		console.log("input must not be empty!");
+    return
+    }
+
       document.getElementById("big-blind").disabled = true;
       document.getElementById("time").disabled = true;
 
