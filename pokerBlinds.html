@@ -35,13 +35,12 @@ p    {color: black;}
   <h1>Current blinds: <span id="blinds"></span></h1>
   <p>Configuration</p>
   <p>
-    Small blind:
-    <input type="number" id="small-blind" value="1">
+    Small blind: <span id="small-blind"></span>
     Big blind:
     <input type="number" id="big-blind" value="2">
   </p>
   <p>
-    Time:
+    Raise-Interval:
     <input type="number" id="time" value="15"> minutes
   </p>
   <button onclick="startTimer()">Start Timer</button>
@@ -52,16 +51,17 @@ p    {color: black;}
     var elapsed = 0;
     
     // Create a variable to store the interval ID
-    var intervalId;
+  var intervalId;
 	var smallBlind
-   	var bigBlind
+  var bigBlind
 	var time
 	var count
    
     function startTimer() {
       // Get the blinds and time from the input fields
-      smallBlind = document.getElementById("small-blind").value;
       bigBlind = document.getElementById("big-blind").value;
+      smallBlind = bigBlind/2 //document.getElementById("small-blind").value;
+      document.getElementById("small-blind").innerHTML = smallBlind;
       time = document.getElementById("time").value;
       
       // Get starting Time
