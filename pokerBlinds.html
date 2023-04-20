@@ -4,144 +4,56 @@
 <style>
 
 
-body {
-
-background-image: linear-gradient(90deg, rgba(231, 231, 231, 0.08) 0%, rgba(231, 231, 231, 0.08) 14%,rgba(224, 224, 224, 0.08) 14%, rgba(224, 224, 224, 0.08) 51%,rgba(140, 140, 140, 0.08) 51%, rgba(140, 140, 140, 0.08) 100%),linear-gradient(90deg, rgba(244, 244, 244, 0.09) 0%, rgba(244, 244, 244, 0.09) 21%,rgba(158, 158, 158, 0.09) 21%, rgba(158, 158, 158, 0.09) 31%,rgba(162, 162, 162, 0.09) 31%, rgba(162, 162, 162, 0.09) 89%,rgba(115, 115, 115, 0.09) 89%, rgba(115, 115, 115, 0.09) 100%),linear-gradient(90deg, rgb(7, 243, 201),rgb(51, 74, 207));
-
--webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-
-background-color: Ivory;
-
-  margin: auto;
-  width: 50%;
-  border: 3px solid red;
-  padding: 10px;
-text-align: center;
-
-}
-h1   {color: black;}
-p    {color: black;}
 </style>
 
 <head>
-  <title> ♦♥♣♠ Poker Blinds Timer ♦♥♣♠</title>
+  <title>Poker Blinds Timer</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <script src="scripts.js"></script>
+  <script src="app.js" ></script>
+  <link rel="manifest" href="./manifest.json" />
+
 </head>
 <body>
+  <div class="outerspace" style="overflow:auto">
+    <div class="center"></div>
+    <div class="content">
+      
 <h1>♦♥♣♠ Poker Blinds Timer ♦♥♣♠</h1>
-<h1>Starting time: <span id="timeStarted"></span></h1>
-  <h1>Elapsed time: <span id="elapsed"></span></h1>
-  <h1>Current blinds: <span id="blinds"></span></h1>
-  <p>Configuration</p>
+<div class="output">
+<h1>Starting time: <span id="timeStarted"> <br></span></h1>
+  <h1>Elapsed time: <span id="elapsed"> <br></span></h1>
+  <h1>Current blinds: <span id="blinds"> <br></span></h1>
+</div>
+  <div class="config">
+
+  <h2>Configuration <br></h2>
   <p>
-    Big blind:
+    <div class="Inputs">
+    <br>Big blind:
     <input type="number" id="big-blind" value="2">
   </p>
   <p>
     Raise-Interval:
     <input type="number" id="time" value="15"> minutes
   </p>
-  <button onclick="startTimer()">Start Timer</button>
-  <button onclick="pauseTimer()">Pause Timer</button>
-  <button onclick="resetTimer()">Reset Timer</button>
+</div>
+  <div class="buttons">
+  <button id="button" onclick="startTimer()">Start Timer</button>
+  <button id="button" onclick="pauseTimer()">Pause Timer</button>
+  <button id="button" onclick="resetTimer()">Reset Timer</button>
   <br>
+</div>
+</div>
+  <div class="footer">
   <a href="https://wa.me/?text=Hey!%20Schau%20mal,%20was%20ich%20hier%20gespielt%20habe">Share with WhatsApp</a>
-
+</div>
+</div>
+</div>
+</div>
 
   <script>
-    // Set the elapsed time to 0
-    var elapsed = 0;
-    
-    // Create a variable to store the interval ID
-  var intervalId;
-	var smallBlind
-  var bigBlind
-	var time
-	var count
-   
-    function startTimer() {
-      // Get the blinds and time from the input fields
-      bigBlind = document.getElementById("big-blind").value;
-      smallBlind = bigBlind/2;
-      //document.getElementById("small-blind").innerHTML = smallBlind;
-      time = document.getElementById("time").value;
-      
-    if (bigBlind == "" ||time == ""){
 
-      		// Display alert message
-		alert("input must not be empty!");
-		console.log("input must not be empty!");
-    return
-    }
-
-      document.getElementById("big-blind").disabled = true;
-      document.getElementById("time").disabled = true;
-
-      // Get starting Time
-      const d = new Date();
-      let timeStart = d.toLocaleString();
-      document.getElementById("timeStarted").innerHTML = timeStart;
-       
-      // Set the countdown timer to the specified time in minutes
-      count = time * 60;
-      
-      // Update the timer every second
-      intervalId = setInterval(function() {
-        // Calculate the minutes and seconds remaining
-        var minutes = Math.floor(count / 60);
-        var seconds = count % 60;
-        
-        // Update the timer display
-        document.getElementById("elapsed").innerHTML = minutes + ":" + seconds;
-        
-        // Increment the elapsed time by 1 second
-        elapsed++;
-        
-        // Calculate the elapsed minutes and seconds
-        var elapsedMinutes = Math.floor(elapsed / 60);
-        var elapsedSeconds = elapsed % 60;
-        
-        // Update the elapsed time display
-        document.getElementById("elapsed").innerHTML = elapsedMinutes + ":" + elapsedSeconds;
-        
-        // Decrement the count by 1
-        count--;
-        
-        // If the count reaches 0, double the blinds and reset the timer
-        if (count < 0) {
-          smallBlind *= 2;
-          bigBlind *= 2;
-          count = time * 60;
-		  
-		// Display alert message
-		alert("time 's up - Blind Raise!");
-		console.log("new blinds: " + smallBlind + "$/" + bigBlind + "$");
-		
-		  
-        }
-        
-
-        // Update the blinds display
-        document.getElementById("blinds").innerHTML = smallBlind + "$/" + bigBlind + "$";
-      }, 1000);
-    }
-    
-    function pauseTimer() {
-      // Pause the timer by clearing the interval
-      clearInterval(intervalId);
-    }
-    
-    function resetTimer() {
-      // Reset the timer, elapsed time, and blinds
-      elapsed = 0;
-      document.getElementById("time").disabled = false;      
-      document.getElementById("big-blind").disabled = false;
-      document.getElementById("big-blind").value = "";
-
-
-	  }
-	  
     
   </script>
 </body>
