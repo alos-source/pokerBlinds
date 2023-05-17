@@ -23,16 +23,29 @@
 <div class="output">
 <h1>Starting time: <span id="timeStarted"> <br></span></h1>
   <h1>Elapsed time: <span id="elapsed"> <br></span></h1>
+  <h1>Remaining time: <span id="remaining"> <br></span></h1>
+  <h1>Elapsed Intervals: <span id="intervals"> <br></span></h1>
   <h1>Current blinds: <span id="blinds"> <br></span></h1>
+  <div>
+    History: <span id="history"> <br></span>
+  </div>
 </div>
   <div class="config">
 
   <h2>Configuration <br></h2>
+  
+  <p>
+    <div class="Inputs">
+    <br>Coin Value per Player:
+    <input type="number" id="playerValue" value="1000">
+  </p>
+
   <p>
     <div class="Inputs">
     <br>Big blind:
     <input type="number" id="big-blind" value="2">
   </p>
+
   <p>
     Raise-Interval:
     <input type="number" id="time" value="15"> minutes
