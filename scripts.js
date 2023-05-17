@@ -111,6 +111,8 @@
       document.getElementById("buttonPause").disabled = false;
       document.getElementById("buttonReset").disabled = true;
 
+      document.getElementById("ShareButton").style.visibility = "hidden";
+
       // start Timer
       timer.start(time*60*1000);
       console.log(timer.getStatus());
@@ -190,6 +192,7 @@
       document.getElementById("buttonPause").disabled = true;
       document.getElementById("buttonReset").disabled = false;
 
+      document.getElementById("ShareButton").style.visibility = "visible";
     }
     
     function resetTimer() {
