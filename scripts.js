@@ -107,6 +107,9 @@
       document.getElementById("big-blind").disabled = true;
       document.getElementById("time").disabled = true;
       document.getElementById("playerValue").disabled = true;
+      document.getElementById("buttonStart").disabled = true;
+      document.getElementById("buttonPause").disabled = false;
+      document.getElementById("buttonReset").disabled = true;
 
       // start Timer
       timer.start(time*60*1000);
@@ -183,6 +186,9 @@
       clearInterval(intervalId);
       timer.pause(); 
       console.log(timer.getStatus());
+      document.getElementById("buttonStart").disabled = false;
+      document.getElementById("buttonPause").disabled = true;
+      document.getElementById("buttonReset").disabled = false;
 
     }
     
